@@ -4,10 +4,10 @@ import './App.css';
 function App() {
   return (
     <>
-      <div className='nathan'>Sticker App</div>
-      <div>This matches</div>
+      <div className='nathan'>Stickr App is running!!</div>
+    <div>This matches</div>
     </>
-  );
+  )
 }
 
 export default App;
