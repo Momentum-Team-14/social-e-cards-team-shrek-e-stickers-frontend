@@ -1,5 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
+import { Homepage } from './components/Homepage'
+import { Header } from './components/Header'
+import { Navbar } from './components/NavBar'
 // header will be built here, in return ()
 // if !isLoggedIn, return LoginPage. if isLoggedIn, return Homepage
 // **what vairables and models do we need to pass in?
@@ -7,10 +9,9 @@ import './App.css';
 function App() {
   return (
     <>
-    
-      <div className='nathan'>Stickr App is running!!</div>
-
-    <div>This matches</div>
+    <Header/>
+    <NavBar/>
+    <Homepage user={user}/>
     </>
   )
 }
