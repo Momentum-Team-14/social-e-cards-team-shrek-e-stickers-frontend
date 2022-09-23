@@ -1,7 +1,7 @@
 import './App.css';
 import { Homepage } from './components/Homepage'
 import { Header } from './components/Header'
-import { Navbar } from './components/NavBar'
+import { NavBar } from './components/NavBar'
 import { useState } from 'react'
 import { Login } from './components/Login'
 
@@ -20,7 +20,9 @@ function App() {
     <>
     <Header/>
     <NavBar/>
-    <Homepage user={user}/>
+    <Homepage 
+      // user={user}
+    />
     <button onClick={() => setIsLoggedIn(false)}>Click to see Login Page</button>
     </>
   )
