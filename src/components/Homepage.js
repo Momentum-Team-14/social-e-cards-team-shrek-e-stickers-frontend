@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Header } from './components/Header'
-import { NavBar } from './components/NavBar'
 import axios from 'axios'
 
 
@@ -20,8 +18,7 @@ useEffect(() => {
     return (
         <>
         <div className="container">
-            <Header/>
-            <NavBar/>
+                {console.log(stickers)}
                 <div className="buttons">
                 <button type="folder">My Stickrs</button>
                 <button type="following">Following</button>
@@ -31,7 +28,9 @@ useEffect(() => {
                     <div>
                         <h2>My Folder</h2>
                         {stickers.map((sticker) => (
-                            <div className="sticker" onClick={() => {setExpanded(expanded)}}>{sticker}</div>
+                            <div className="sticker" onClick={() => {
+                                // setExpanded(expanded)
+                            }}>{sticker.name}</div>
                         ))}
                     </div>
                  </div>   
