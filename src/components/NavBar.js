@@ -1,5 +1,9 @@
 export const NavBar = () => {
     return(
-        <p>Nav bar</p>
+        <>
+            <div><a href='/'>Homepage</a></div>
+            <div><a href='/profile'>Profile</a></div>
+            <div>Create Stickr</div>
+        </>
     )
 }
