@@ -4,6 +4,7 @@ import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { useState } from 'react'
 import { Login } from './components/Login'
+import { Routes, Route } from 'react-router-dom'
 
 // header will be built here, in return ()
 // if !isLoggedIn, return LoginPage. if isLoggedIn, return Homepage
@@ -20,10 +21,15 @@ function App() {
     <>
     <Header/>
     <NavBar/>
-    <Homepage 
-      // user={user}
-    />
     <button onClick={() => setIsLoggedIn(false)}>Click to see Login Page</button>
+    <Routes>
+      <Route 
+        path='' 
+        element={<Homepage 
+          // user={user}
+        />}
+      />
+    </Routes>
     </>
   )
 }
