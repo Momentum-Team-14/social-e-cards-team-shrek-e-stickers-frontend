@@ -1,5 +1,6 @@
 import './App.css';
 import { Homepage } from './components/Homepage'
+import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { useState } from 'react'
@@ -26,6 +27,12 @@ function App() {
       <Route 
         path='' 
         element={<Homepage 
+          // user={user}
+        />}
+      />
+      <Route 
+        path='profile' 
+        element={<Profile 
           // user={user}
         />}
       />
