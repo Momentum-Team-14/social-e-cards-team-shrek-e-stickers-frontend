@@ -19,7 +19,7 @@ const handleSignOut = () => {
     return (
         <div className="header">
             <div className="logo">
-                {/* <image src="--INSERT LOGO CUTOUT HERE--"/> */}
+                <img className='logo' src="resources/logo-for-login.jpg" alt="cutout-logo"></img>
             </div>
             <div className="login-info" onClick={()=> handleClick}>
                 username

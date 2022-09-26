@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
+import { ShowStickers } from "./ShowStickers";
 
 export const Profile = () => {
     const [user, setUser] = useState(null);
@@ -7,7 +8,7 @@ export const Profile = () => {
     useEffect(() => {
         console.log('sticker effect running')
         axios
-            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/2/`)
+            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/1/`)
             .then((res) => setUser(res.data))
     
     }, [])
@@ -25,7 +26,9 @@ export const Profile = () => {
                         <div>Followers:  </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
                     </div>
-                    <div className='profile-main'>Stickrs Here</div>
+                    <div className='profile-main'>
+                        <ShowStickers stickers={user.stickers}/>
+                    </div>
                 </div>
         )
     }
