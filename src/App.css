@@ -23,3 +23,20 @@ html, body, #root {
 .avatar {
   width: 20%;
 }
+
+.sticker-list{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: pink;
+}
+
+.pic{
+  max-width: 15rem;
+  margin: 2rem;
+}
+
+.sticker{
+  max-width: 20rem;
+  
+}

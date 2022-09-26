@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 // Add style later
 
 export const Login = ({ setIsLoggedIn }) => {
@@ -14,7 +13,7 @@ export const Login = ({ setIsLoggedIn }) => {
 
     return (
         <>
-        <h1>Site Name</h1>
+        <h1>Stickrs</h1>
         <p>Please log in to view and create Stickrs!</p>
         <form onSubmit={handleSubmit}>
             <div>
