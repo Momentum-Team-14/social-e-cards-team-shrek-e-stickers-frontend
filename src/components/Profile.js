@@ -8,7 +8,7 @@ export const Profile = () => {
     useEffect(() => {
         console.log('sticker effect running')
         axios
-            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/1/`)
+            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/3/`)
             .then((res) => setUser(res.data))
     
     }, [])
