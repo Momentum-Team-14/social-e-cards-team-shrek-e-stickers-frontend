@@ -5,27 +5,65 @@ import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { useState } from 'react'
 import { Login } from './components/Login'
+import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import axios from 'axios';
 
 // header will be built here, in return ()
 // if !isLoggedIn, return LoginPage. if isLoggedIn, return Homepage
 // **what vairables and models do we need to pass in?
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [token, setToken] = useLocalStorageState('stickerToken', null)
+  const [username, setUsername] = useLocalStorageState('stickerUsername', '')
 
-  if (!isLoggedIn) {
-    return(<Login setIsLoggedIn={setIsLoggedIn} />)
+  const setAuth = (username, token) => {
+    setToken(token)
+    setUsername(username)
   }
+
+  const handleLogout = () => {
+    axios
+      .post(
+        'https://team-shrek-e-stickers-backend.herokuapp.com/auth/token/logout/',
+        {},
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then(() =>
+        setAuth('', null)
+      )
+      // return <Navigate to='/' />
+  }
+
+  const isLoggedIn = username && token
+
+  // if (!isLoggedIn) {
+  //   return <Navigate to='/' />
+  // }
 
   return (
     <>
     <Header/>
-    <NavBar/>
-    <button onClick={() => setIsLoggedIn(false)}>Click to see Login Page</button>
+    {isLoggedIn && (
+      <nav>
+        <button onClick={handleLogout}>
+          Log Out
+        </button>
+      </nav>
+    )}
+    {isLoggedIn && <NavBar/>}
     <Routes>
+      <Route
+        path="/"
+        element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+      />
       <Route 
-        path='' 
+        path='stickrs' 
         element={<Homepage 
           // user={user}
         />}
