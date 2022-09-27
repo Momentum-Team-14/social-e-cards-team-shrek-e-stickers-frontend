@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import logo from '../resources/logo-for-login.jpg'
 import { Link, Navigate } from 'react-router-dom'
 // Add style later
 
@@ -34,7 +35,9 @@ export const Login = ({ setAuth, isLoggedIn }) => {
 
     return (
         <>
-        <h1>Stickrs</h1>
+        <div className='login-container'>
+        <img className='login-logo'src={logo} alt='login-logo'></img>
+        <h1>Welcome to Stickrs</h1>
         <p>Please log in to view and create Stickrs!</p>
         {error && <p className="error">{error} </p> }
         <form onSubmit={handleSubmit}>
@@ -62,6 +65,7 @@ export const Login = ({ setAuth, isLoggedIn }) => {
                 <input type='submit' className='btn' value='Log In' />
             </div>
         </form>
+        </div>
         </>
     )
 }

@@ -38,15 +38,17 @@ return (
     <div key={id} >
         <div className='sticker' 
         style={{ backgroundColor: background, 
-            backgroundImage: <img src={patternUrl} alt='pattern'></img>
+            backgroundImage: <img src={patternUrl} alt='pattern'></img>,
+            color: fontColor
              }}>
-        <img className='pic' src = {imageBroken ? 'https://cdn-icons-png.flaticon.com/512/107/107817.png' : imageUrl} onError={() => setImageBroken(true)} alt={"Sticker for " + title}></img></div>
+        <img className='pic' src = {imageBroken ? 'https://cdn-icons-png.flaticon.com/512/107/107817.png' : imageUrl} onError={() => setImageBroken(true)} alt={"Sticker for " + title}></img>
         <h4>{title}</h4>
         <button onClick={() => handleClick()}>
         {expanded ? 'Less' : 'More'} info
         </button>
         { expanded ? ( creator ? <p>{creator}</p> : '') : ''}
         { expanded ? ( message ? <p>{message}</p> : '') : ''}
+        </div>
     </div>
     </div>
 )
