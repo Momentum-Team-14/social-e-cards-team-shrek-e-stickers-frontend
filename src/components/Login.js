@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logo from '../resources/logo-for-login.jpg'
 // Add style later
 
 export const Login = ({ setIsLoggedIn }) => {
@@ -13,7 +14,9 @@ export const Login = ({ setIsLoggedIn }) => {
 
     return (
         <>
-        <h1>Stickrs</h1>
+        <div className='login-container'>
+        <img className='login-logo'src={logo} alt='login-logo'></img>
+        <h1>Welcome to Stickrs</h1>
         <p>Please log in to view and create Stickrs!</p>
         <form onSubmit={handleSubmit}>
             <div>
@@ -41,6 +44,7 @@ export const Login = ({ setIsLoggedIn }) => {
             </div>
             <button onClick={() => setIsLoggedIn(true)}>Click to see Home Page</button>
         </form>
+        </div>
         </>
     )
 }

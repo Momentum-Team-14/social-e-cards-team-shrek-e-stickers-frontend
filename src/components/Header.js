@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import logo from '../resources/logo-cutout.png';
 
 export const Header = () => {
 const [display, setDisplay] = useState ('none')
@@ -19,7 +20,7 @@ const handleSignOut = () => {
     return (
         <div className="header">
             <div className="logo">
-                <img className='logo' src="resources/logo-for-login.jpg" alt="cutout-logo"></img>
+                <img className='logo' src={logo} alt="cutout-logo"></img>
             </div>
             <div className="login-info" onClick={()=> handleClick}>
                 username

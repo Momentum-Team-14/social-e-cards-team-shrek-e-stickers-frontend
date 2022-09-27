@@ -28,7 +28,7 @@ html, body, #root {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  background-color: pink;
+  background-color: white;
 }
 
 .pic{
@@ -39,4 +39,30 @@ html, body, #root {
 .sticker{
   max-width: 20rem;
   
+}
+
+.header {
+  text-align: center;
+  background-color: rgb(197, 157, 242);
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.buttons-bar {
+  text-align: center;
+}
+
+.sticker {
+  border: 2rem;
+  border-color: white;
+}
+
+.login-container{
+  text-align: center;
 }
