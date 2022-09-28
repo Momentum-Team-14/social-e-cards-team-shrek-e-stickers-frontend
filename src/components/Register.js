@@ -1,10 +1,12 @@
+// TODO: Login after registering
+
 import axios from 'axios'
 import { useState } from 'react'
 import logo from '../resources/logo-for-login.jpg'
 import { Link, Navigate } from 'react-router-dom'
 // Add style later
 
-export const Login = ({ setAuth, isLoggedIn }) => {
+export const Register = ({ setAuth, isLoggedIn }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
@@ -16,7 +18,7 @@ export const Login = ({ setAuth, isLoggedIn }) => {
         setError(null)
 
         axios
-            .post('https://team-shrek-e-stickers-backend.herokuapp.com/auth/token/login/', {
+            .post('https://team-shrek-e-stickers-backend.herokuapp.com/auth/users/', {
                 username: username,
                 password: password,
             })
@@ -38,7 +40,7 @@ export const Login = ({ setAuth, isLoggedIn }) => {
         <div className='login-container'>
         <img className='login-logo'src={logo} alt='login-logo'></img>
         <h1>Welcome to Stickrs</h1>
-        <p>Please log in to view and create Stickrs!</p>
+        <p>Please register a username and password</p>
         {error && <p className="error">{error} </p> }
         <form onSubmit={handleSubmit}>
             <div>
@@ -62,12 +64,12 @@ export const Login = ({ setAuth, isLoggedIn }) => {
                 ></input>
             </div>
             <div>
-                <input type='submit' className='btn' value='Log In' />
+                <input type='submit' className='btn' value='Register' />
             </div>
         </form>
         <div>
-            <Link to='/register'>
-                Register
+            <Link to='../'>
+                Back to Login
             </Link>
         </div>
         </div>

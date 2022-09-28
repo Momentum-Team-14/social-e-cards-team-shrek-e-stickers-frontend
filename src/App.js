@@ -1,10 +1,13 @@
+// TODO: Navigate back to login after logging out
+
 import './App.css';
+import { Login } from './components/Login'
+import { Register } from './components/Register'
 import { Homepage } from './components/Homepage'
 import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { useState } from 'react'
-import { Login } from './components/Login'
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
@@ -34,10 +37,10 @@ function App() {
           },
         }
       )
-      .then(() =>
+      .then(() => {
         setAuth('', null)
-      )
-      // return <Navigate to='/' />
+        // return <Navigate to='../' />
+      })
   }
 
   const isLoggedIn = username && token
@@ -61,6 +64,10 @@ function App() {
       <Route
         path="/"
         element={<Login setAuth={setAuth} isLoggedIn={isLoggedIn} />}
+      />
+      <Route
+        path="register"
+        element={<Register setAuth={setAuth} isLoggedIn={isLoggedIn} />}
       />
       <Route 
         path='stickrs' 
