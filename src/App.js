@@ -7,10 +7,9 @@ import { Homepage } from './components/Homepage'
 import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
-import { useState } from 'react'
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 // header will be built here, in return ()
@@ -20,6 +19,7 @@ import axios from 'axios';
 function App() {
   const [token, setToken] = useLocalStorageState('stickerToken', null)
   const [username, setUsername] = useLocalStorageState('stickerUsername', '')
+  const navigate = useNavigate()
 
   const setAuth = (username, token) => {
     setToken(token)
@@ -39,7 +39,7 @@ function App() {
       )
       .then(() => {
         setAuth('', null)
-        // return <Navigate to='../' />
+        navigate('/')
       })
   }
 
@@ -54,9 +54,9 @@ function App() {
     {isLoggedIn && <Header/>}
     {isLoggedIn && (
       <nav>
-        <button onClick={handleLogout}>
+        <Link to="/"><button onClick={handleLogout}>
           Log Out
-        </button>
+        </button></Link>
       </nav>
     )}
     {isLoggedIn && <NavBar/>}
