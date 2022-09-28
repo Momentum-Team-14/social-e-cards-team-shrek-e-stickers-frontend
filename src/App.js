@@ -81,6 +81,12 @@ function App() {
           // user={user}
         />}
       />
+      <Route 
+        path='profile/:userId' 
+        element={<Profile token={token} 
+          // user={user}
+        />}
+      />
     </Routes>
     </>
   )
