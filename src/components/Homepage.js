@@ -1,8 +1,9 @@
+// TODO: Update user api calls to be based on current user
+// TODO: Update followed users to be followed users
+
 import { useState, useEffect } from 'react'
 import { ShowStickers } from './ShowStickers'
 import axios from 'axios'
-// TODO: Update user api calls to be based on current user
-// TODO: Update followed users to be followed users
 
 // pass in {user}?
 export const Homepage = () => {
