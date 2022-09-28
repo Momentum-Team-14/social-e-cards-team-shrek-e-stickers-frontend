@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { ShowStickers } from "./ShowStickers";
+import { useParams } from "react-router-dom";
 
 export const Profile = ({ token }) => {
     const [user, setUser] = useState(null);
+    const { userId } = useParams()
     
     useEffect(() => {
         console.log('sticker effect running')
         axios
-            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/3/`)
+            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`)
             .then((res) => setUser(res.data))
     
     }, [])
@@ -18,7 +20,7 @@ export const Profile = ({ token }) => {
     // allows user to follow
     const handleFollowUser = () => {
         axios
-        .post(`https://team-shrek-e-stickers-backend.herokuapp.com//user/${user.id}/follow/`, {
+        .post(`https://team-shrek-e-stickers-backend.herokuapp.com/user/${userId}/follow/`, {
             headers: {
                 Authorization: `Token ${token}`,
             },
@@ -35,7 +37,7 @@ export const Profile = ({ token }) => {
                             {/* {user.avatar} */}
                             <img className='avatar' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='profile'/>
                         </div>
-                        <div>Followers:  </div>
+                        <div>Followers: {user.following_count} </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
                         <button type="follow" onClick={() => {handleFollowUser()}}>Follow User</button>
                     </div>
