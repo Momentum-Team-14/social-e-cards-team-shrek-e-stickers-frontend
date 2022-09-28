@@ -1,8 +1,10 @@
+// TODO: Only display follow user button if profile isn't logged in user, and logged in user hasn't already followed (maybe display message if they are following)
+
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { ShowStickers } from "./ShowStickers";
 
-export const Profile = () => {
+export const Profile = ({ token }) => {
     const [user, setUser] = useState(null);
     
     useEffect(() => {
@@ -12,6 +14,16 @@ export const Profile = () => {
             .then((res) => setUser(res.data))
     
     }, [])
+
+    // allows user to follow
+    const handleFollowUser = () => {
+        axios
+        .post(`https://team-shrek-e-stickers-backend.herokuapp.com//user/${user.id}/follow/`, {
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+        })
+    }
 
     if (user) {
         return(
@@ -25,6 +37,7 @@ export const Profile = () => {
                         </div>
                         <div>Followers:  </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
+                        <button type="follow" onClick={() => {handleFollowUser()}}>Follow User</button>
                     </div>
                     <div className='profile-main'>
                         <ShowStickers stickers={user.stickers}/>

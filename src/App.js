@@ -77,7 +77,7 @@ function App() {
       />
       <Route 
         path='profile' 
-        element={<Profile 
+        element={<Profile token={token} 
           // user={user}
         />}
       />
