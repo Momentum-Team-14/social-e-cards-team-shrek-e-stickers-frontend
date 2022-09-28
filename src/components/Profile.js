@@ -20,7 +20,9 @@ export const Profile = ({ token }) => {
     // allows user to follow
     const handleFollowUser = () => {
         axios
-        .post(`https://team-shrek-e-stickers-backend.herokuapp.com/user/${userId}/follow/`, {
+        .post(`https://team-shrek-e-stickers-backend.herokuapp.com/user/${userId}/follow/`, 
+        {},
+        {
             headers: {
                 Authorization: `Token ${token}`,
             },
@@ -37,7 +39,7 @@ export const Profile = ({ token }) => {
                             {/* {user.avatar} */}
                             <img className='avatar' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='profile'/>
                         </div>
-                        <div>Followers: {user.following_count} </div>
+                        <div>Followers: {user.followed_count} </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
                         <button type="follow" onClick={() => {handleFollowUser()}}>Follow User</button>
                     </div>
