@@ -12,7 +12,12 @@ export const Profile = ({ token, currentUser }) => {
     useEffect(() => {
         console.log('sticker effect running')
         axios
-            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`)
+            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`,
+            {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+            })
             .then((res) => setUser(res.data))
     
     }, [])

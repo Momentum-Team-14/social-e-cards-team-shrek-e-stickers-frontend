@@ -8,6 +8,7 @@ import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { useState, useEffect } from 'react';
+import { StickerForm } from './components/CreateSticker'
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
 import { Link, useNavigate} from 'react-router-dom'
@@ -67,7 +68,7 @@ function App() {
 
   return (
     <>
-    {isLoggedIn && <Header/>}
+    {isLoggedIn && currentUser && <Header username={currentUser.username}/>}
     {isLoggedIn && (
       <nav>
         <Link to="/"><button onClick={handleLogout}>
@@ -87,7 +88,12 @@ function App() {
       />
       <Route 
         path='stickrs' 
-        element={<Homepage />}
+        element={<Homepage token={token} />}
+      />
+      <Route
+        path='new'
+        element={<StickerForm token={token}
+      />}
       />
       {currentUser && <Route 
         path='profile/:userId' 

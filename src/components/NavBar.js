@@ -4,7 +4,7 @@ export const NavBar = ({ currentUserID }) => {
         <div className='navbar'>
             <div><a href='/stickrs'>Homepage</a></div>
             <div><a href={`/profile/${currentUserID}`}>Profile</a></div>
-            <div>Create Stickr</div>
+            <div><a href='/new'>Create Stickr</a></div>
         </div>
         </>
     )
