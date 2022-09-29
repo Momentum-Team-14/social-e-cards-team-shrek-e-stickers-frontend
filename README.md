@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Welcome to the Stickrs App!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -14,57 +14,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app has been deployed to: https://team-shrek-e-stickers-frontend.netlify.app/stickrs
 
-### `npm run build`
+With every push to this GitHub repository, the live website will reflect your changes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How the App Works:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Users will be prompted to register and login when first coming to the site. Through the registration form, each user profile is given a unique token for authentication. Through is token, users are allowed to create their own Stickrs! It is important to note that users can only edit and delete their own Stickrs.
 
-### `npm run eject`
+### Homepage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+After successfully logging in, users are sent to their Homepage. Within the header, the logged-in user's username is displayed, and there is also a button to log out. Beneath the header is a navigation bar where users have the option to go to their Homepage (default), Profile, or create a new Stickr. The main portion of the Homepage displays all of the Stickrs the user can interact with! Using the toggle buttons above, they can choose between seeing their own Stickrs, Stickrs of user's they're following, or all Stickrs. When clicked, the Stickr's unique message is shown. User's can also edit or delete their own Stickrs wherever they are displayed.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Profile
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Here is where the user's Stickrs are publicly displayed by order of earliest created. On the left-hand side there is additional info about the user displayed, such as bio and avatar. Here is where other users can follow each other.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Create a new Stickr
 
-## Learn More
+To create a new Stickr, users are prompted to fill out a form where they can enter their own Title and Message, then choose the image, background color, and font color. When submitted, users are directed back to their Homepage.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We hope you enjoy your Stickrs!

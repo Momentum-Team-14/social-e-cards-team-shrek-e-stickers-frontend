@@ -18,8 +18,10 @@ export const ConfirmDelete = ({token}) => {
         }, [stickerId, token]) 
         
         const handleDelete = () => {
+            navigate('stickrs')
     }
     const handleCancel = () => {
+        navigate('stickrs')
 
     }
 

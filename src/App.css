@@ -13,6 +13,7 @@ html, body, #root {
   flex: initial;
   width: 30%;
   background-color: lightblue;
+  padding: 1rem;
 }
 
 .profile-main {
