@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import logo from '../resources/logo-cutout.png';
 
-export const Header = () => {
+export const Header = ({ username }) => {
 const [display, setDisplay] = useState ('none')
 const handleClick = () => {
     if (display === 'none') {
@@ -23,7 +23,7 @@ const handleSignOut = () => {
                 <img className='logo' src={logo} alt="cutout-logo"></img>
             </div>
             <div className="login-info" onClick={()=> handleClick}>
-                username
+                {username}
             </div>
             <div className="drop-down-menu" style={{display:display}}>
                 <div onClick={()=>handleProfile}>My Profile</div>

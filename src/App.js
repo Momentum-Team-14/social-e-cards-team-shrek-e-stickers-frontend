@@ -7,11 +7,11 @@ import { Homepage } from './components/Homepage'
 import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
+import { useState, useEffect } from 'react';
 import { StickerForm } from './components/CreateSticker'
-import { useState } from 'react'
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { EditForm } from './components/EditSticker'
 import { ConfirmDelete } from './components/ConfirmDelete'
@@ -23,6 +23,7 @@ import { ConfirmDelete } from './components/ConfirmDelete'
 function App() {
   const [token, setToken] = useLocalStorageState('stickerToken', null)
   const [username, setUsername] = useLocalStorageState('stickerUsername', '')
+  const navigate = useNavigate()
 
   const setAuth = (username, token) => {
     setToken(token)
@@ -42,10 +43,25 @@ function App() {
       )
       .then(() => {
         setAuth('', null)
-        // return <Navigate to='../' />
+        navigate('/')
       })
   }
 
+  const [currentUser, setCurrentUser] = useState(null);
+    
+  useEffect(() => {
+      axios
+          .get(`https://team-shrek-e-stickers-backend.herokuapp.com/myprofile/`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          })
+          .then((res) => setCurrentUser(res.data))
+  
+  }, [])
+
+  {currentUser && console.log(currentUser.id)}
   const isLoggedIn = username && token
 
   // if (!isLoggedIn) {
@@ -54,15 +70,15 @@ function App() {
 
   return (
     <>
-    {isLoggedIn && <Header/>}
+    {isLoggedIn && currentUser && <Header username={currentUser.username}/>}
     {isLoggedIn && (
       <nav>
-        <button onClick={handleLogout}>
+        <Link to="/"><button onClick={handleLogout}>
           Log Out
-        </button>
+        </button></Link>
       </nav>
     )}
-    {isLoggedIn && <NavBar/>}
+    {isLoggedIn && currentUser && <NavBar currentUserID={currentUser.id}/>}
     <Routes>
       <Route
         path="/"
@@ -74,37 +90,28 @@ function App() {
       />
       <Route 
         path='stickrs' 
-        element={<Homepage 
-          // user={user}
-        />}
-      />
-      <Route 
-        path='profile' 
-        element={<Profile token={token} 
-          // user={user}
-        />}
+        element={<Homepage token={token} />}
       />
       <Route
         path='new'
         element={<StickerForm token={token}
       />}
       />
-      <Route 
-        path='profile/:userId' 
-        element={<Profile token={token} 
-          // user={user}
-        />}
-      />
       <Route
         path='edit/:stickerId'
         element={<EditForm token={token} 
-      />}
-      />
+        />}
+        />
       <Route
         path='delete/:stickerId'
         element={<ConfirmDelete token={token}
-      />}
-      />
+        />}
+        />
+    {currentUser && <Route 
+    path='profile/:userId' 
+    element={<Profile token={token} currentUser={currentUser} />}
+    // user={user}
+    />}
     </Routes>
     </>
   )

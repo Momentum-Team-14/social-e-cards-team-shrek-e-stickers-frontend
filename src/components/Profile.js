@@ -5,14 +5,19 @@ import axios from "axios";
 import { ShowStickers } from "./ShowStickers";
 import { useParams } from "react-router-dom";
 
-export const Profile = ({ token }) => {
+export const Profile = ({ token, currentUser }) => {
     const [user, setUser] = useState(null);
     const { userId } = useParams()
     
     useEffect(() => {
         console.log('sticker effect running')
         axios
-            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`)
+            .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`,
+            {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+            })
             .then((res) => setUser(res.data))
     
     }, [])
