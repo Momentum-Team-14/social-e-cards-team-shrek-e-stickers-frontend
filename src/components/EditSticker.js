@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import images from './CreateOptions'
+import { useParams } from "react-router-dom"
 
-export const EditForm = ({token, sticker}) => {
-        const [title, setTitle] = useState(sticker.title)
-        const [imageUrl, setImageUrl] = useState(sticker.imageUrl)
-        const [backgroundColor, setBackgroundColor] = useState(sticker.backgroundColor)
-        const [message, setMessage] = useState(sticker.message)
-        const [fontColor, setFontColor] = useState(sticker.fontColor)
+export const EditForm = ({token}) => {
+        const [title, setTitle] = useState('')
+        const [imageUrl, setImageUrl] = useState('')
+        const [backgroundColor, setBackgroundColor] = useState('')
+        const [message, setMessage] = useState('')
+        const [fontColor, setFontColor] = useState('')
         const [submitted, setSubmitted] = useState(false)
         const [error, setError] = useState(false)
+        const { stickerId } = useParams()
     
     const handleSubmit = (event) => {
         event.preventDefault()
         axios   
-            .patch (`https://team-shrek-e-stickers-backend.herokuapp.com/stickers/${sticker.id}`,
+            .patch (`https://team-shrek-e-stickers-backend.herokuapp.com/stickers/${stickerId}`,
             {
                 title: title,
                 image_url: imageUrl,

@@ -13,7 +13,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import axios from 'axios';
-import { EditForm } from './components/EditStickers'
+import { EditForm } from './components/EditSticker'
 import { ConfirmDelete } from './components/ConfirmDelete'
 
 // header will be built here, in return ()
@@ -96,13 +96,13 @@ function App() {
         />}
       />
       <Route
-        path='edit'
-        element={<EditForm token={token} sticker={sticker}
+        path='edit/:stickerId'
+        element={<EditForm token={token} 
       />}
       />
       <Route
-        path='delete'
-        element={<ConfirmDelete token={token} id={sticker.id}
+        path='delete/:stickerId'
+        element={<ConfirmDelete token={token}
       />}
       />
     </Routes>

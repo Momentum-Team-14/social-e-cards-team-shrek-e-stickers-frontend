@@ -36,10 +36,10 @@ const Sticker = ({ sticker, title, creator, creatorPk, message, imageUrl, backgr
         setExpanded(!expanded)
     }
     const handleEdit = (sticker) => {
-        return <Navigate to="/edit" sticker={sticker}/>
+        return <Navigate to ={`/edit/${sticker.id}`}/>
     }
     const handleDelete = (sticker) => {
-        return <Navigate to="/delete" sticker={sticker} />
+        return <Navigate to={`/delete/${sticker.id}`}/>
     }
 
 return (
