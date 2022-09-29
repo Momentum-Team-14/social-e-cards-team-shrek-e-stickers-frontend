@@ -50,16 +50,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
     
   useEffect(() => {
-      axios
+      token && axios
           .get(`https://team-shrek-e-stickers-backend.herokuapp.com/myprofile/`,
           {
             headers: {
               Authorization: `Token ${token}`,
             },
           })
-          .then((res) => setCurrentUser(res.data))
+          .then((res) => {
+            setCurrentUser(res.data)
+          })
   
-  }, [])
+  }, [token])
 
   {currentUser && console.log(currentUser.id)}
   const isLoggedIn = username && token
@@ -102,11 +104,11 @@ function App() {
         element={<EditForm token={token} 
         />}
         />
-      <Route
+      {/* <Route
         path='delete/:stickerId'
         element={<ConfirmDelete token={token}
         />}
-        />
+        /> */}
     {currentUser && <Route 
     path='profile/:userId' 
     element={<Profile token={token} currentUser={currentUser} />}
