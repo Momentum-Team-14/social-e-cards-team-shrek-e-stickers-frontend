@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export const ShowStickers = ({stickers}) => {
     
@@ -11,6 +12,7 @@ export const ShowStickers = ({stickers}) => {
                 {stickers.map((sticker) => (
                     <div key={sticker.id}>
                         <Sticker
+                        sticker={sticker}
                         title={sticker.title}
                         creator={sticker.creator}
                         creatorPk={sticker.creator_pk}
@@ -18,7 +20,6 @@ export const ShowStickers = ({stickers}) => {
                         imageUrl={sticker.image_url}
                         background={sticker.background_color}
                         patternUrl={sticker.pattern_url}
-                        font={sticker.font}
                         fontColor={sticker.font_color}
                         />
                     </div>
@@ -28,27 +29,38 @@ export const ShowStickers = ({stickers}) => {
         </div>
 )}
 
-const Sticker = ({ title, creator, creatorPk, message, imageUrl, background, patternUrl, font, fontColor }) => {
+const Sticker = ({ sticker, title, creator, creatorPk, message, imageUrl, background, patternUrl, fontColor }) => {
     const [imageBroken, setImageBroken] = useState(false)
     const [expanded, setExpanded] = useState(false)
+    const navigate = useNavigate ()
     const handleClick = () => {
         setExpanded(!expanded)
     }
+    const handleEdit = (sticker) => {
+        navigate(`/edit/${sticker.id}`)
+    }
+    const handleDelete = (sticker) => {
+        navigate(`/delete/${sticker.id}`)
+    }
 
 return (
-    <div className='container'>
+    <div className='sticker-container'>
         <div className='sticker' 
         style={{ backgroundColor: background, 
             backgroundImage: <img src={patternUrl} alt='pattern'></img>,
             color: fontColor
              }}>
         <img className='pic' src = {imageBroken ? 'https://cdn-icons-png.flaticon.com/512/107/107817.png' : imageUrl} onError={() => setImageBroken(true)} alt={"Sticker for " + title}></img>
-        <h4>{title}</h4>
+        <h3>{title}</h3>
+        <div className="expand-info">
         <button onClick={() => handleClick()}>
         {expanded ? 'Less' : 'More'} info
         </button>
+        <button onClick={()=> handleEdit(sticker)}>Edit</button>
+        <button onClick={()=> handleDelete(sticker)}>Delete</button>
         { expanded ? ( creator ? <p><a href={`/profile/${creatorPk}`}>{creator}</a></p> : '') : ''}
         { expanded ? ( message ? <p>{message}</p> : '') : ''}
+        </div>
         </div>
     </div>
 )

@@ -13,6 +13,8 @@ import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
 import { Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import { EditForm } from './components/EditSticker'
+import { ConfirmDelete } from './components/ConfirmDelete'
 
 // header will be built here, in return ()
 // if !isLoggedIn, return LoginPage. if isLoggedIn, return Homepage
@@ -95,10 +97,21 @@ function App() {
         element={<StickerForm token={token}
       />}
       />
-      {currentUser && <Route 
-        path='profile/:userId' 
-        element={<Profile token={token} currentUser={currentUser} />}
-      />}
+      <Route
+        path='edit/:stickerId'
+        element={<EditForm token={token} 
+        />}
+        />
+      <Route
+        path='delete/:stickerId'
+        element={<ConfirmDelete token={token}
+        />}
+        />
+    {currentUser && <Route 
+    path='profile/:userId' 
+    element={<Profile token={token} currentUser={currentUser} />}
+    // user={user}
+    />}
     </Routes>
     </>
   )
