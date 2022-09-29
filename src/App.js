@@ -7,6 +7,7 @@ import { Homepage } from './components/Homepage'
 import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
+import { StickerForm } from './components/CreateSticker'
 import { useState } from 'react'
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
@@ -80,6 +81,11 @@ function App() {
         element={<Profile token={token} 
           // user={user}
         />}
+      />
+      <Route
+        path='new'
+        element={<StickerForm token={token}
+      />}
       />
       <Route 
         path='profile/:userId' 
