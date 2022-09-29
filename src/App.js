@@ -87,6 +87,12 @@ function App() {
         element={<StickerForm token={token}
       />}
       />
+      <Route 
+        path='profile/:userId' 
+        element={<Profile token={token} 
+          // user={user}
+        />}
+      />
     </Routes>
     </>
   )
