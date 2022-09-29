@@ -12,6 +12,7 @@ export const ShowStickers = ({stickers}) => {
                 {stickers.map((sticker) => (
                     <div key={sticker.id}>
                         <Sticker
+                        sticker={sticker}
                         title={sticker.title}
                         creator={sticker.creator}
                         creatorPk={sticker.creator_pk}
@@ -19,7 +20,6 @@ export const ShowStickers = ({stickers}) => {
                         imageUrl={sticker.image_url}
                         background={sticker.background_color}
                         patternUrl={sticker.pattern_url}
-                        font={sticker.font}
                         fontColor={sticker.font_color}
                         />
                     </div>
@@ -29,22 +29,17 @@ export const ShowStickers = ({stickers}) => {
         </div>
 )}
 
-const Sticker = ({ title, creator, creatorPk, message, imageUrl, background, patternUrl, font, fontColor }) => {
+const Sticker = ({ sticker, title, creator, creatorPk, message, imageUrl, background, patternUrl, fontColor }) => {
     const [imageBroken, setImageBroken] = useState(false)
     const [expanded, setExpanded] = useState(false)
-    const [selectedSticker, setSelectedSticker] = useState(null)
     const handleClick = () => {
         setExpanded(!expanded)
     }
     const handleEdit = (sticker) => {
-        selectedSticker(sticker)
-        return <Navigate to="/edit" />
-        // or maybe I should call the Edit Form here to pass in the sticker?
-        // return <EditForm ({token, sticker})>
+        return <Navigate to="/edit" sticker={sticker}/>
     }
     const handleDelete = (sticker) => {
-        setSelectedSticker(sticker)
-        return <Navigate to="/delete" />
+        return <Navigate to="/delete" sticker={sticker} />
     }
 
 return (

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import images from './CreateOptions'
 
-export const EditForm = ({token, id}) => {
+export const EditForm = ({token, sticker}) => {
         const [title, setTitle] = useState(sticker.title)
         const [imageUrl, setImageUrl] = useState(sticker.imageUrl)
         const [backgroundColor, setBackgroundColor] = useState(sticker.backgroundColor)
@@ -15,7 +15,7 @@ export const EditForm = ({token, id}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         axios   
-            .post ('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/',
+            .patch (`https://team-shrek-e-stickers-backend.herokuapp.com/stickers/${sticker.id}`,
             {
                 title: title,
                 image_url: imageUrl,
@@ -149,4 +149,3 @@ export const EditForm = ({token, id}) => {
         </div>
     )
     }
-}
