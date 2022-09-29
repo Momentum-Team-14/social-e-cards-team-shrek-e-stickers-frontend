@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 export const Profile = ({ token, currentUser }) => {
     const [user, setUser] = useState(null);
     const { userId } = useParams()
+    // const [follow, setFollow] = useState(false)
     
     useEffect(() => {
         console.log('sticker effect running')
@@ -18,12 +19,16 @@ export const Profile = ({ token, currentUser }) => {
                     Authorization: `Token ${token}`,
                 },
             })
-            .then((res) => setUser(res.data))
+            .then((res) => {
+                setUser(res.data)
+                // set initial follow state
+            })
     
     }, [])
 
     // allows user to follow
     const handleFollowUser = () => {
+
         axios
         .post(`https://team-shrek-e-stickers-backend.herokuapp.com/user/${userId}/follow/`, 
         {},
@@ -46,6 +51,7 @@ export const Profile = ({ token, currentUser }) => {
                         </div>
                         <div>Followers: {user.followed_count} </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
+                        {/* if follow is not null display button */}
                         <button type="follow" onClick={() => {handleFollowUser()}}>Follow User</button>
                     </div>
                     <div className='profile-main'>

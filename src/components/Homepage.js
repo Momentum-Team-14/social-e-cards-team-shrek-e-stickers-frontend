@@ -7,6 +7,7 @@ import axios from 'axios'
 export const Homepage = ({ token }) => {
 const [url, setUrl] = useState('')
 const [stickers, setStickers] = useState([])
+const [display, setDisplay] = useState('All Stickrs')
 const [view, setView] = useState('my');
 const allUrl = 'https://team-shrek-e-stickers-backend.herokuapp.com/stickers/'
 
@@ -26,7 +27,10 @@ const handleMy = () => {
             Authorization: `Token ${token}`,
         },
     })
-    .then((res) => setStickers(res.data))
+    .then((res) => {
+        console.log(res.data)
+        setStickers(res.data)
+    })
 }
 
 // list of stickers from followed users
