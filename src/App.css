@@ -52,6 +52,7 @@ html, body, #root {
   flex-wrap: wrap;
   text-align: center;
   justify-content: space-between;
+  padding: 3rem;
 }
 
 .buttons-bar {
@@ -61,8 +62,19 @@ html, body, #root {
 .sticker {
   border: 2rem;
   border-color: white;
+  padding: 1rem;
 }
 
 .login-container{
   text-align: center;
 }
+
+.create-container{
+  text-align: center;
+}
+
+.sticker-container {
+  text-align: center;
+  margin: 1rem;
+}
+

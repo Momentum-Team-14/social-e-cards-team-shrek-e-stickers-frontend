@@ -41,7 +41,7 @@ const handleSubmit = (event) => {
 }
 
 if (submitted) {
-    return <Navigate to="/stickers/" />
+    return <Navigate to="/stickrs" />
 }
 
 const handleChange = (inputType, event) => {
@@ -69,11 +69,11 @@ const handleChange = (inputType, event) => {
 }
 
 return (
-    <div className="container">
+    <div className="create-container">
         <form className="form" onSubmit={handleSubmit}>
             <h2>Create a new Stickr:</h2>
             <div className="control">
-            <label htmlFor="title-field" className="label">title</label>
+            <label htmlFor="title-field" className="label">Title: </label>
                 <input
                 className="input"
                 placeholder="title"
@@ -84,7 +84,7 @@ return (
                 />
             </div>
             <div className="control">
-            <label htmlFor="image-select">Choose an image:</label>
+            <label htmlFor="image-select">Choose an image: </label>
             <select name="images" id="image-select" onChange={(e) => handleChange('imageUrl', e)}>
                 <option value=" ">--Please choose an image option--</option>
                 <option value="donut" defaultValue>donut</option>
@@ -98,7 +98,7 @@ return (
             </select>
             </div>   
             <div className="control">
-            <label htmlFor="background-select">Choose a background color:</label>
+            <label htmlFor="background-select">Choose a background color: </label>
             <select name="background" id="background-select" onChange={(e) => handleChange('backgroundColor', e)}>
                 <option value=" ">--Please choose a color option--</option>
                 <option value="black">black</option>
@@ -113,7 +113,7 @@ return (
             </select>
             </div>
             <div className="control">
-            <label htmlFor="message-field" className="label">Write a message:</label>
+            <label htmlFor="message-field" className="label">Write a message: </label>
                 <input
                 className="input"
                 placeholder="message"
@@ -124,7 +124,7 @@ return (
                 />
             </div>
             <div className="control">
-            <label htmlFor="font-color-select">Choose a font color:</label>
+            <label htmlFor="font-color-select">Choose a font color: </label>
             <select name="font-colors" id="font-color-select" onChange={(e) => handleChange('font-color', e)}>
                 <option value=" ">--Please choose a font color option--</option>
                 <option value="black" defaultValue>black</option>

@@ -93,6 +93,16 @@ function App() {
           // user={user}
         />}
       />
+      <Route
+        path='edit'
+        element={<EditForm token={token} id={sticker.id}
+      />}
+      />
+      <Route
+        path='delete'
+        element={<ConfirmDelete token={token} id={sticker.id}
+      />}
+      />
     </Routes>
     </>
   )
