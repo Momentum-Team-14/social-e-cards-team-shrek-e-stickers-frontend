@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import images from './CreateOptions'
 import { useParams } from "react-router-dom"
 
 export const EditForm = ({token}) => {
-    const [sticker, setSticker] = useState({})
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const { stickerId } = useParams()
@@ -14,6 +13,7 @@ export const EditForm = ({token}) => {
     const [backgroundColor, setBackgroundColor] = useState('')
     const [message, setMessage] = useState('')
     const [fontColor, setFontColor] = useState('')
+    const navigate = useNavigate()
 
     useEffect (() => {
         axios
@@ -60,7 +60,7 @@ export const EditForm = ({token}) => {
     }
     
     if (submitted) {
-        return <Navigate to="/stickrs" />
+        navigate('stickrs')
     }
     
     const handleChange = (inputType, event) => {
