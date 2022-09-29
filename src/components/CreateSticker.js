@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import images from './CreateOptions'
 
 export const StickerForm = ({ token }) => {
     const [title, setTitle] = useState('')
@@ -42,22 +43,28 @@ const handleSubmit = (event) => {
 if (submitted) {
     return <Navigate to="/stickers/" />
 }
-// 'inputType' might be changes with select element. adding for a place-holder
+
 const handleChange = (inputType, event) => {
     if (inputType === 'title') {
         setTitle(event.target.value)
+        console.log(title)
     }
-    if (inputType === 'image') {
-        setImageUrl(event.target.value)
+    if (inputType === 'imageUrl') {
+        setImageUrl(images[event.target.value])
+        console.log(event.target.value)
+        console.log(imageUrl)
     }
-    if (inputType === 'background color') {
+    if (inputType === 'backgroundColor') {
         setBackgroundColor(event.target.value)
+        console.log(backgroundColor)
     }
     if (inputType === 'message') {
         setMessage(event.target.value)
+        console.log(message)
     }
-    if (inputType === 'font color') {
+    if (inputType === 'font-color') {
         setFontColor(event.target.value)
+        console.log(fontColor)
     }
 }
 
@@ -83,10 +90,11 @@ return (
                 <option value="donut" selected>donut</option>
                 <option value="flower">flower</option>
                 <option value="butterfly">butterfly</option>
-                <option value="happy-sad-face">happy-sad face</option>
-                <option value="ice-cream">ice cream</option>
-                <option value="thumbs-up">thumbs up</option>
+                <option value="happy_sad_face">happy-sad face</option>
+                <option value="ice_cream">ice cream</option>
+                <option value="thumbs_up">thumbs up</option>
                 <option value="heart">heart</option>
+
             </select>
             </div>   
             <div className="control">
@@ -130,12 +138,14 @@ return (
                 <option value="orange">orange</option>
             </select>
             </div>
+            <div className="form-submit">
+                <input
+                className="button"
+                type="submit"
+                value="Submit"
+                />
+            </div>
         </form>
     </div>
-
-
-
-
-
 )
 }
