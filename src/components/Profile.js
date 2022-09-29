@@ -5,7 +5,7 @@ import axios from "axios";
 import { ShowStickers } from "./ShowStickers";
 import { useParams } from "react-router-dom";
 
-export const Profile = ({ token }) => {
+export const Profile = ({ token, currentUser }) => {
     const [user, setUser] = useState(null);
     const { userId } = useParams()
     

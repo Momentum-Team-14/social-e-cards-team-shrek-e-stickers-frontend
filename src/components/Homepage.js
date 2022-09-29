@@ -24,6 +24,8 @@ const handleMy = () => {
     axios
     .get('https://team-shrek-e-stickers-backend.herokuapp.com/profile/1')
     .then((res) => setStickers(res.data.stickers))
+    // .get('https://team-shrek-e-stickers-backend.herokuapp.com/mystickers')
+    // .then((res) => setStickers(res.data))
 }
 
 // list of stickers from followed users

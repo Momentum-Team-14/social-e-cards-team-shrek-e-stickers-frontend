@@ -7,6 +7,7 @@ import { Homepage } from './components/Homepage'
 import { Profile } from './components/Profile'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
+import { useState, useEffect } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { Routes, Route } from 'react-router-dom'
 import { Link, useNavigate} from 'react-router-dom'
@@ -43,6 +44,21 @@ function App() {
       })
   }
 
+  const [currentUser, setCurrentUser] = useState(null);
+    
+  useEffect(() => {
+      axios
+          .get(`https://team-shrek-e-stickers-backend.herokuapp.com/myprofile/`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          })
+          .then((res) => setCurrentUser(res.data))
+  
+  }, [])
+
+  {currentUser && console.log(currentUser.id)}
   const isLoggedIn = username && token
 
   // if (!isLoggedIn) {
@@ -59,7 +75,7 @@ function App() {
         </button></Link>
       </nav>
     )}
-    {isLoggedIn && <NavBar/>}
+    {isLoggedIn && currentUser && <NavBar currentUserID={currentUser.id}/>}
     <Routes>
       <Route
         path="/"
@@ -71,22 +87,12 @@ function App() {
       />
       <Route 
         path='stickrs' 
-        element={<Homepage 
-          // user={user}
-        />}
+        element={<Homepage />}
       />
-      <Route 
-        path='profile' 
-        element={<Profile token={token} 
-          // user={user}
-        />}
-      />
-      <Route 
+      {currentUser && <Route 
         path='profile/:userId' 
-        element={<Profile token={token} 
-          // user={user}
-        />}
-      />
+        element={<Profile token={token} currentUser={currentUser} />}
+      />}
     </Routes>
     </>
   )
