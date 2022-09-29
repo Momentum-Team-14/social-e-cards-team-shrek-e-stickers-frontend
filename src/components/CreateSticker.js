@@ -84,10 +84,10 @@ return (
                 />
             </div>
             <div className="control">
-            <label for="image-select">Choose an image:</label>
+            <label htmlFor="image-select">Choose an image:</label>
             <select name="images" id="image-select" onChange={(e) => handleChange('imageUrl', e)}>
                 <option value=" ">--Please choose an image option--</option>
-                <option value="donut" selected>donut</option>
+                <option value="donut" defaultValue>donut</option>
                 <option value="flower">flower</option>
                 <option value="butterfly">butterfly</option>
                 <option value="happy_sad_face">happy-sad face</option>
@@ -98,12 +98,12 @@ return (
             </select>
             </div>   
             <div className="control">
-            <label for="background-select">Choose a background color:</label>
+            <label htmlFor="background-select">Choose a background color:</label>
             <select name="background" id="background-select" onChange={(e) => handleChange('backgroundColor', e)}>
                 <option value=" ">--Please choose a color option--</option>
                 <option value="black">black</option>
-                <option value="white">white</option>
-                <option value="yellow" selected>yellow</option>
+                <option value="white" defaultValue>white</option>
+                <option value="yellow">yellow</option>
                 <option value="green">green</option>
                 <option value="blue">blue</option>
                 <option value="purple">purple</option>
@@ -124,12 +124,12 @@ return (
                 />
             </div>
             <div className="control">
-            <label for="font-color-select">Choose a font color:</label>
+            <label htmlFor="font-color-select">Choose a font color:</label>
             <select name="font-colors" id="font-color-select" onChange={(e) => handleChange('font-color', e)}>
                 <option value=" ">--Please choose a font color option--</option>
-                <option value="black">black</option>
+                <option value="black" defaultValue>black</option>
                 <option value="white">white</option>
-                <option value="yellow" selected>yellow</option>
+                <option value="yellow">yellow</option>
                 <option value="green">green</option>
                 <option value="blue">blue</option>
                 <option value="purple">purple</option>
