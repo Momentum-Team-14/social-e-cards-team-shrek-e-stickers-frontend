@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export const ShowStickers = ({stickers}) => {
     
@@ -32,14 +32,15 @@ export const ShowStickers = ({stickers}) => {
 const Sticker = ({ sticker, title, creator, creatorPk, message, imageUrl, background, patternUrl, fontColor }) => {
     const [imageBroken, setImageBroken] = useState(false)
     const [expanded, setExpanded] = useState(false)
+    const navigate = useNavigate ()
     const handleClick = () => {
         setExpanded(!expanded)
     }
     const handleEdit = (sticker) => {
-        return <Navigate to ={`/edit/${sticker.id}`}/>
+        navigate(`/edit/${sticker.id}`)
     }
     const handleDelete = (sticker) => {
-        return <Navigate to={`/delete/${sticker.id}`}/>
+        navigate(`/delete/${sticker.id}`)
     }
 
 return (

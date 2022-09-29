@@ -32,6 +32,7 @@ const handleSubmit = (event) => {
     .then((res) => {
         setSubmitted(true)
         setTitle('')
+        //setImageName
         setImageUrl('')
         setBackgroundColor('')
         setMessage('')

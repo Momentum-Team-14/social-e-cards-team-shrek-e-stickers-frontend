@@ -5,15 +5,32 @@ import images from './CreateOptions'
 import { useParams } from "react-router-dom"
 
 export const EditForm = ({token}) => {
-        const [title, setTitle] = useState('')
-        const [imageUrl, setImageUrl] = useState('')
-        const [backgroundColor, setBackgroundColor] = useState('')
-        const [message, setMessage] = useState('')
-        const [fontColor, setFontColor] = useState('')
-        const [submitted, setSubmitted] = useState(false)
-        const [error, setError] = useState(false)
-        const { stickerId } = useParams()
-    
+    const [sticker, setSticker] = useState({})
+    const [submitted, setSubmitted] = useState(false)
+    const [error, setError] = useState(false)
+    const { stickerId } = useParams()
+    const [title, setTitle] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
+    const [backgroundColor, setBackgroundColor] = useState('')
+    const [message, setMessage] = useState('')
+    const [fontColor, setFontColor] = useState('')
+
+    useEffect (() => {
+        axios
+            .get (`https://team-shrek-e-stickers-backend.herokuapp.com/stickers/${stickerId}`,
+            {
+                headers: {
+                    Authorization: `Token ${token}`,
+            }})
+            .then((res) => {
+                setTitle(res.data.title)
+                setBackgroundColor(res.data.background_color)
+                setMessage(res.data.message)
+                setFontColor(res.data.font_color)
+            })
+        }, [stickerId, token]) 
+
+
     const handleSubmit = (event) => {
         event.preventDefault()
         axios   
@@ -73,7 +90,7 @@ export const EditForm = ({token}) => {
     return (
         <div className="create-container">
             <form className="form" onSubmit={handleSubmit}>
-                <h2>Create a new Stickr:</h2>
+                <h2>Edit Stickr:</h2>
                 <div className="control">
                 <label htmlFor="title-field" className="label">Title:</label>
                     <input
@@ -101,7 +118,7 @@ export const EditForm = ({token}) => {
                 </div>   
                 <div className="control">
                 <label htmlFor="background-select">Choose a background color:</label>
-                <select name="background" id="background-select" onChange={(e) => handleChange('backgroundColor', e)}>
+                <select value={backgroundColor} name="background" id="background-select" onChange={(e) => handleChange('backgroundColor', e)}>
                     <option value=" ">--Please choose a color option--</option>
                     <option value="black">black</option>
                     <option value="white">white</option>
@@ -127,7 +144,7 @@ export const EditForm = ({token}) => {
                 </div>
                 <div className="control">
                 <label htmlFor="font-color-select">Choose a font color:</label>
-                <select name="font-colors" id="font-color-select" onChange={(e) => handleChange('font-color', e)}>
+                <select value={fontColor} name="font-colors" id="font-color-select" onChange={(e) => handleChange('font-color', e)}>
                     <option value=" ">--Please choose a font color option--</option>
                     <option value="black">black</option>
                     <option value="white">white</option>
