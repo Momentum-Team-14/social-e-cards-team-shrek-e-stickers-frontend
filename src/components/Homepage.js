@@ -1,12 +1,10 @@
-// TODO: Update user api calls to be based on current user
 // TODO: Update followed users to be followed users
 
 import { useState, useEffect } from 'react'
 import { ShowStickers } from './ShowStickers'
 import axios from 'axios'
 
-// pass in {user}?
-export const Homepage = () => {
+export const Homepage = ({ token }) => {
 const [url, setUrl] = useState('')
 const [stickers, setStickers] = useState([])
 const [view, setView] = useState('my');
@@ -22,21 +20,33 @@ const handleAll = () => {
 // list of current user's stickers
 const handleMy = () => {
     axios
-    .get('https://team-shrek-e-stickers-backend.herokuapp.com/profile/1')
-    .then((res) => setStickers(res.data.stickers))
+    .get('https://team-shrek-e-stickers-backend.herokuapp.com/mystickers/',
+    {
+        headers: {
+            Authorization: `Token ${token}`,
+        },
+    })
+    .then((res) => setStickers(res.data))
 }
 
 // list of stickers from followed users
 const handleFollow = () => {
     axios
-    .get('https://team-shrek-e-stickers-backend.herokuapp.com/users')
-    .then((res) => {
-        let collection = []
-        for (const user of res.data) {
-            collection.concat(user.stickers)
-        }
-        setStickers(collection)
+    .get('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/following/',
+    {
+        headers: {
+            Authorization: `Token ${token}`,
+        },
     })
+    .then((res) => setStickers(res.data))
+    // .get('https://team-shrek-e-stickers-backend.herokuapp.com/users')
+    // .then((res) => {
+    //     let collection = []
+    //     for (const user of res.data) {
+    //         collection.concat(user.stickers)
+    //     }
+    //     setStickers(collection)
+    // })
 }
 
 // Sets up default to display all stickers

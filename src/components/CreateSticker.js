@@ -15,7 +15,7 @@ export const StickerForm = ({ token }) => {
 const handleSubmit = (event) => {
     event.preventDefault()
     axios   
-        .post ('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/',
+        .post('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/',
         {
             title: title,
             image_url: imageUrl,
@@ -41,7 +41,7 @@ const handleSubmit = (event) => {
 }
 
 if (submitted) {
-    return <Navigate to="/stickers/" />
+    return <Navigate to="/stickrs" />
 }
 
 const handleChange = (inputType, event) => {
