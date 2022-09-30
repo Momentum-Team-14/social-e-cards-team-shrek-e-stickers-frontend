@@ -43,7 +43,7 @@ export const Profile = ({ token, currentUser }) => {
         return(
                 <div className='profile'>
                     <div className='profile-sidebar'>
-                        <div>Profile</div>
+                        <div><h2>Profile</h2></div>
                         <div>Name: {user.username} </div>
                         <div>Avatar: 
                             {/* {user.avatar} */}
