@@ -7,6 +7,7 @@ import axios from 'axios'
 export const Homepage = ({ token }) => {
 const [url, setUrl] = useState('')
 const [stickers, setStickers] = useState([])
+const [display, setDisplay] = useState('All Stickrs')
 const [view, setView] = useState('my');
 const allUrl = 'https://team-shrek-e-stickers-backend.herokuapp.com/stickers/'
 
@@ -14,7 +15,7 @@ const allUrl = 'https://team-shrek-e-stickers-backend.herokuapp.com/stickers/'
 const handleAll = () => {
     axios
     .get('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/')
-    .then((res) => setStickers(res.data))
+    .then((res) => setStickers(res.data.results))
 }
 
 // list of current user's stickers
@@ -26,7 +27,9 @@ const handleMy = () => {
             Authorization: `Token ${token}`,
         },
     })
-    .then((res) => setStickers(res.data))
+    .then((res) => {
+        setStickers(res.data.results)
+    })
 }
 
 // list of stickers from followed users
@@ -38,7 +41,7 @@ const handleFollow = () => {
             Authorization: `Token ${token}`,
         },
     })
-    .then((res) => setStickers(res.data))
+    .then((res) => setStickers(res.data.results))
     // .get('https://team-shrek-e-stickers-backend.herokuapp.com/users')
     // .then((res) => {
     //     let collection = []
@@ -50,11 +53,15 @@ const handleFollow = () => {
 }
 
 // Sets up default to display all stickers
-if (stickers.length === 0) {
-    axios
-    .get('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/')
-    .then((res) => setStickers(res.data))
-}
+useEffect(() => {
+    if (stickers.length === 0) {
+        axios
+        .get('https://team-shrek-e-stickers-backend.herokuapp.com/stickers/')
+        .then((res) => {
+            setStickers(res.data.results)})
+    }
+
+}, [])
 
 if (stickers.length > 0) {
 
@@ -69,7 +76,7 @@ return (
                 </div>
                 <div className="binder">
                     <ShowStickers stickers={stickers}/>
-                 </div>   
+                </div>   
             </div>
         </> 
     )

@@ -4,17 +4,14 @@ import axios from 'axios'
 import { useState } from 'react'
 import logo from '../resources/logo-for-login.jpg'
 import { Link, Navigate } from 'react-router-dom'
-// Add style later
 
 export const Register = ({ setAuth, isLoggedIn }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
 
-    // update when back end has user model running
     const handleSubmit = (event) => {
         event.preventDefault()
-        // setIsLoggedIn(true)
         setError(null)
 
         axios

@@ -10,7 +10,6 @@ export const Profile = ({ token, currentUser }) => {
     const { userId } = useParams()
     
     useEffect(() => {
-        console.log('sticker effect running')
         axios
             .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`,
             {
@@ -18,12 +17,16 @@ export const Profile = ({ token, currentUser }) => {
                     Authorization: `Token ${token}`,
                 },
             })
-            .then((res) => setUser(res.data))
+            .then((res) => {
+                setUser(res.data)
+                // set initial follow state
+            })
     
     }, [])
 
     // allows user to follow
     const handleFollowUser = () => {
+
         axios
         .post(`https://team-shrek-e-stickers-backend.herokuapp.com/user/${userId}/follow/`, 
         {},
@@ -41,11 +44,11 @@ export const Profile = ({ token, currentUser }) => {
                         <div><h2>Profile</h2></div>
                         <div>Name: {user.username} </div>
                         <div>Avatar: 
-                            {/* {user.avatar} */}
                             <img className='avatar' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='profile'/>
                         </div>
                         <div>Followers: {user.followed_count} </div>
                         <div>Bio: {user.bio ? user.bio : 'n/a'} </div>
+                        {/* if follow is not null display button */}
                         <button type="follow" onClick={() => {handleFollowUser()}}>Follow User</button>
                     </div>
                     <div className='profile-main'>

@@ -49,24 +49,18 @@ if (submitted) {
 const handleChange = (inputType, event) => {
     if (inputType === 'title') {
         setTitle(event.target.value)
-        console.log(title)
     }
     if (inputType === 'imageUrl') {
         setImageUrl(images[event.target.value])
-        console.log(event.target.value)
-        console.log(imageUrl)
     }
     if (inputType === 'backgroundColor') {
         setBackgroundColor(event.target.value)
-        console.log(backgroundColor)
     }
     if (inputType === 'message') {
         setMessage(event.target.value)
-        console.log(message)
     }
     if (inputType === 'font-color') {
         setFontColor(event.target.value)
-        console.log(fontColor)
     }
 }
 
