@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import images from './CreateOptions'
 
 export const StickerForm = ({ token }) => {
@@ -11,6 +11,7 @@ export const StickerForm = ({ token }) => {
     const [fontColor, setFontColor] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
+    const navigate = useNavigate()
 
 const handleSubmit = (event) => {
     event.preventDefault()
@@ -42,7 +43,7 @@ const handleSubmit = (event) => {
 }
 
 if (submitted) {
-    return <Navigate to="/stickrs" />
+    navigate(`stickrs`)
 }
 
 const handleChange = (inputType, event) => {
