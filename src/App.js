@@ -1,5 +1,3 @@
-// TODO: Navigate back to login after logging out
-
 import './App.css';
 import { Login } from './components/Login'
 import { Register } from './components/Register'
@@ -15,10 +13,6 @@ import { Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { EditForm } from './components/EditSticker'
 import { ConfirmDelete } from './components/ConfirmDelete'
-
-// header will be built here, in return ()
-// if !isLoggedIn, return LoginPage. if isLoggedIn, return Homepage
-// **what vairables and models do we need to pass in?
 
 function App() {
   const [token, setToken] = useLocalStorageState('stickerToken', null)
@@ -63,12 +57,8 @@ function App() {
   
   }, [token])
 
-  {currentUser && console.log(currentUser.id)}
   const isLoggedIn = username && token
 
-  // if (!isLoggedIn) {
-  //   return <Navigate to='/' />
-  // }
 
   return (
     <>
@@ -104,15 +94,14 @@ function App() {
         element={<EditForm token={token} 
         />}
         />
-      {/* <Route
+      <Route
         path='delete/:stickerId'
         element={<ConfirmDelete token={token}
         />}
-        /> */}
+        />
     {currentUser && <Route 
     path='profile/:userId' 
     element={<Profile token={token} currentUser={currentUser} />}
-    // user={user}
     />}
     </Routes>
     </>

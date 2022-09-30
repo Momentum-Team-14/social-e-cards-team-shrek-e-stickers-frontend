@@ -8,10 +8,8 @@ import { useParams } from "react-router-dom";
 export const Profile = ({ token, currentUser }) => {
     const [user, setUser] = useState(null);
     const { userId } = useParams()
-    // const [follow, setFollow] = useState(false)
     
     useEffect(() => {
-        console.log('sticker effect running')
         axios
             .get(`https://team-shrek-e-stickers-backend.herokuapp.com/profile/${userId}/`,
             {
@@ -46,7 +44,6 @@ export const Profile = ({ token, currentUser }) => {
                         <div><h2>Profile</h2></div>
                         <div>Name: {user.username} </div>
                         <div>Avatar: 
-                            {/* {user.avatar} */}
                             <img className='avatar' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='profile'/>
                         </div>
                         <div>Followers: {user.followed_count} </div>

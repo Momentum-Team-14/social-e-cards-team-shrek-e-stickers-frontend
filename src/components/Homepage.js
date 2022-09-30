@@ -28,7 +28,6 @@ const handleMy = () => {
         },
     })
     .then((res) => {
-        console.log(res.data.results)
         setStickers(res.data.results)
     })
 }

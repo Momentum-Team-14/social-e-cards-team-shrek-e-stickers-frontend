@@ -8,7 +8,6 @@ export const ShowStickers = ({stickers}) => {
         <div>
         <h2>All Stickrs</h2>
             <div>
-                {console.log(stickers)}
                 <div className='sticker-list'>
                 {stickers.map((sticker) => (
                     <div key={sticker.id}>
